@@ -1,0 +1,127 @@
+{
+  "protocol": "imt-bn-two-mornings-v1",
+  "source_kind": "uci864",
+  "source_url": "https://archive.ics.uci.edu/static/public/864/room+occupancy+estimation.zip",
+  "source_doi": "10.24432/C5P605",
+  "source_license": "CC BY 4.0",
+  "source_sha256": "c090ee5c94b61762bfec9d22767864490b51030f98cca030f02822468db25d9c",
+  "row_count": 10129,
+  "training_fraction": 0.7,
+  "split_position": 7090,
+  "state_names": {
+    "O": [
+      0,
+      1
+    ],
+    "M": [
+      0,
+      1
+    ],
+    "T": [
+      0,
+      1,
+      2
+    ],
+    "L": [
+      0,
+      1
+    ],
+    "S": [
+      0,
+      1,
+      2
+    ],
+    "C": [
+      0,
+      1,
+      2
+    ]
+  },
+  "feature_columns": {
+    "T": [
+      "S1_Temp",
+      "S2_Temp",
+      "S3_Temp",
+      "S4_Temp"
+    ],
+    "L": [
+      "S1_Light",
+      "S2_Light",
+      "S3_Light",
+      "S4_Light"
+    ],
+    "S": [
+      "S1_Sound",
+      "S2_Sound",
+      "S3_Sound",
+      "S4_Sound"
+    ],
+    "C": [
+      "S5_CO2"
+    ],
+    "M": [
+      "S6_PIR",
+      "S7_PIR"
+    ]
+  },
+  "target": "O = int(Room_Occupancy_Count > 0)",
+  "preprocessing": {
+    "continuous": "same-row mean; one CO2 level column",
+    "quantile_cuts_fitted_on_training_only": {
+      "T": [
+        25.3125,
+        25.595
+      ],
+      "L": [
+        31.75
+      ],
+      "S": [
+        0.0625,
+        0.07250000000000001
+      ],
+      "C": [
+        360.0,
+        410.0
+      ]
+    },
+    "boundary_rule": "lower-inclusive upper bin: searchsorted(side=right)",
+    "PIR": "same-row maximum / logical OR",
+    "excluded": [
+      "Date as predictor",
+      "Time as predictor",
+      "S5_CO2_Slope",
+      "Room_Occupancy_Count as evidence"
+    ]
+  },
+  "pseudocount_per_cell": 1,
+  "threshold": 0.16666666666666666,
+  "tie_decision": "occupied",
+  "splits": {
+    "train": {
+      "rows": 7090,
+      "first_timestamp": "2017-12-22T10:49:41",
+      "last_timestamp": "2017-12-26T00:35:20",
+      "class_counts": {
+        "0": 5483,
+        "1": 1607
+      }
+    },
+    "test": {
+      "rows": 3039,
+      "first_timestamp": "2017-12-26T00:35:51",
+      "last_timestamp": "2018-01-11T09:00:09",
+      "class_counts": {
+        "0": 2745,
+        "1": 294
+      }
+    }
+  },
+  "files": {
+    "occupancy_train.csv": {
+      "sha256": "7132e6424570da9c5f300baf9ac12b94879edccff4835840b8528348a3ee4f0d"
+    },
+    "occupancy_test.csv": {
+      "sha256": "4135c25ad8f87e49e93a9ba746cbb88c1e7947202b2e971855299655d7ec049e"
+    }
+  }
+}
