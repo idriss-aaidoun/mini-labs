@@ -57,7 +57,7 @@ Activate the environment:
 | Platform | Command |
 | --- | --- |
 | macOS / Linux | `source .venv/bin/activate` |
-| Windows PowerShell | `.venv\\Scripts\\Activate.ps1` |
+| Windows PowerShell | `.\.venv\Scripts\Activate.ps1` |
 
 Install JupyterLab and launch it:
 
@@ -81,6 +81,22 @@ ollama pull qwen2.5:3b
 ```
 
 Make sure the Ollama server is running; use `ollama serve` if it is not already running through the desktop app. Follow TD1's setup cells for the Python dependencies. Local model inference does not require an API key; LangSmith tracing is optional.
+
+### Run the PDF retrieval lab (TP2)
+
+1. Start Ollama and download the embedding model:
+
+   ```bash
+   ollama pull nomic-embed-text
+   ```
+
+2. Open JupyterLab from `agentic/` (run `cd agentic` before launching it), then open [TP2_RAG_Part1.ipynb](./agentic/TP2_RAG_Part1.ipynb). Run its dependency-installation cells in the selected kernel.
+3. Set `PDF_PATH` in Section 1. The default points to the included `rapport_stage_Aaidoun_idriss.pdf`; use your own PDF by placing it beside the notebook and updating that value. If the configured file is missing, the notebook uses built-in sample text.
+4. Run the cells in order to load pages, compare recursive and semantic chunks, create embeddings, persist the collections, and compare retrieval results.
+
+The lab uses `langchain-chroma`, `langchain-community`, `langchain-ollama`, `langchain-experimental`, `langchain-text-splitters`, `pypdf`, and other packages listed in its setup cell. The `nomic-embed-text` embedding model is separate from the `qwen2.5:3b` chat model used in TD1 and TP1.
+
+Vectors are written to `agentic/chroma_db/` when running from `agentic/`. The indexing cell deletes the configured `CHROMA_DIR` before rebuilding it, so check that path before rerunning. The generated database and notebook checkpoints are ignored by `agentic/.gitignore`. If the embedding runner stops with a connection error, restart Ollama and rerun the embedding and semantic-chunking cells, as described in the notebook.
 
 ### Run a TSP example
 
