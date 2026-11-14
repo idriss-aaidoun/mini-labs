@@ -10,21 +10,31 @@ This repository follows my coursework: implementing core algorithms, training mo
 | --- | --- | --- |
 | Machine learning fundamentals | [`bases/`](./bases/) | Linear regression with the normal equation and gradient descent, Titanic classification, and a CIFAR-10 CNN |
 | Bayesian networks | [`bayesian-networks/`](./bayesian-networks/) | Graph construction, conditional probability distributions, parameter estimation, and exact inference with pgmpy |
-| Deep learning | [`deep_learning/`](./deep_learning/) | Neural networks in NumPy, fully connected networks and CNNs in PyTorch, and a Hugging Face practical |
-| Agentic AI | [`agentic/`](./agentic/) | Local LLMs with Ollama and LangChain, structured outputs, tool calling, and ReAct loops |
+| Deep learning | [`deep_learning/`](./deep_learning/) | Neural networks in NumPy, fully connected networks and CNNs in PyTorch, and ResNet image classification and transfer learning with Hugging Face |
+| Agentic AI | [`agentic/`](./agentic/) | Local LLMs with Ollama and LangChain, structured outputs, tool calling, ReAct loops, and PDF retrieval with ChromaDB |
 | Decision analysis and uncertainty | [`decision_analysisç/`](./decision_analysis%C3%A7/) | Reliability diagrams, expected calibration error (ECE), temperature scaling, and conformal prediction |
-| Optimization and metaheuristics | [`math for machine learning/`](./math%20for%20machine%20learning/) | Traveling Salesman Problem (TSP), nearest-neighbor construction, local search, and iterated search |
+| Optimization and metaheuristics | [`math for machine learning/`](./math%20for%20machine%20learning/) | Traveling Salesman Problem (TSP), nearest-neighbor construction, local search, and iterated search; two solver implementations and an instance generator |
 | Additional course resources | [`agentic/advenced machine learning/`](./agentic/advenced%20machine%20learning/) | Lecture PDFs, an ensemble-learning assignment, and another copy of the Bayesian-network labs with occupancy data |
 
-A Titanic notebook is also available at the repository root. Folder names above match the current repository, including spaces and spelling.
+A Titanic notebook is also available at the repository root, alongside the version in `bases/`. The local `Advanced Statistics and Probability/` folder is currently empty and has no tracked course material. Folder names above match the current repository, including spaces and spelling.
 
 ## Suggested starting points
 
 - **Review the basics:** open [the ML fundamentals folder](./bases/) and its [linear-regression guide](./bases/README.md).
 - **Explore probabilistic reasoning:** start with [the sprinkler notebook](./bayesian-networks/01_sprinkler_pgmpy.ipynb), then the occupancy practical. The [Bayesian-network guide](./bayesian-networks/README.md) explains the main concepts.
-- **Build an LLM agent:** work through [TD1 — Working with LLMs](./agentic/TD1_Working_with_LLMs.ipynb), followed by [TP1 — ReAct Agent](./agentic/TP1_ReAct_Agent.ipynb).
+- **Build an LLM agent:** work through [TD1 — Working with LLMs](./agentic/TD1_Working_with_LLMs.ipynb), followed by [TP1 — ReAct Agent](./agentic/TP1_ReAct_Agent.ipynb), then [TP2 — RAG Part 1](./agentic/TP2_RAG_Part1.ipynb) to build a searchable PDF knowledge base.
 - **Study model uncertainty:** explore [the decision-analysis notebook](./decision_analysis%C3%A7/TP_decision_analysis.ipynb).
 - **Explore optimization code:** inspect [the TSP solver](./math%20for%20machine%20learning/tsp.py).
+
+## Agentic AI learning path
+
+| Lab | Focus | What it covers |
+| --- | --- | --- |
+| [TD1 — Working with LLMs](./agentic/TD1_Working_with_LLMs.ipynb) | Local model fundamentals | Invoke, stream and batch calls; prompts and messages; Pydantic structured outputs; tool dispatch; a mini ReAct loop |
+| [TP1 — ReAct Agent](./agentic/TP1_ReAct_Agent.ipynb) | Agents from scratch | Trace and implement the reasoning/tool loop, combine tools, and design and evaluate a domain agent |
+| [TP2 — RAG Part 1](./agentic/TP2_RAG_Part1.ipynb) | Document retrieval | Load a PDF, compare recursive and semantic chunking, embed text with Ollama, persist and reload Chroma collections, compare retrieval, filter metadata, and visualize embeddings |
+
+TP2 currently implements the document-to-retriever stage. Its closing notes describe answer generation and RAGAS evaluation as future Part 2 work; no Part 2 notebook is included.
 
 ## Getting started
 
